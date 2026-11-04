@@ -42,35 +42,58 @@
         <span class="btn__label">Contact</span>
         <span class="btn__icon"><img src="/assets/icons/nav-arrow.svg" alt="" width="52" height="52" /></span>
       </a>
+      <button class="nav__burger" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="menu-drawer">
+        <span class="nav__burger-bar"></span>
+        <span class="nav__burger-bar"></span>
+        <span class="nav__burger-bar"></span>
+      </button>
     </div>
   </header>
+
+  <div class="menu-drawer" id="menu-drawer" aria-hidden="true">
+    <div class="menu-drawer__backdrop" data-drawer-close></div>
+    <div class="menu-drawer__panel">
+      <nav class="menu-drawer__nav" aria-label="Mobile navigation">
+        <a class="menu-drawer__link" href="/#about">About</a>
+        <a class="menu-drawer__link" href="/#certificate">Certificat</a>
+        <a class="menu-drawer__link" href="/#experience">Experience</a>
+        <a class="menu-drawer__link is-active" href="/#works">Works</a>
+      </nav>
+      <a class="btn btn--lime menu-drawer__cta" href="/#contact">
+        <span class="btn__label">Contact</span>
+        <span class="btn__icon"><img src="/assets/icons/arrow-ne.svg" alt="" width="20" height="20" /></span>
+      </a>
+    </div>
+  </div>
 
   <main>
     <!-- PROJECT HERO -->
     <section class="p-hero">
-      <div class="p-hero__header" data-reveal>
-        <div class="p-hero__title-wrap">
+      <div class="p-hero__top" data-reveal>
+        <div class="p-hero__col p-hero__col--left">
           <h1 class="p-hero__title">Tracky App</h1>
+          <div class="p-hero__scroll">
+            <img src="/assets/icons/arrow-down.svg" alt="" width="14" height="14" />
+            <span>Scroll to Explore</span>
+          </div>
         </div>
-        <p class="p-hero__tagline">Mobile app design for<br />Vehicle tracking & management.</p>
-      </div>
-
-      <div class="p-hero__meta" data-reveal>
-        <p class="p-hero__scope">UX Design, UI Design and Design System</p>
-        <div class="p-hero__scroll">
-          <span>Scroll to Explore</span>
-          <img src="/assets/icons/arrow-down.svg" alt="" width="14" height="14" />
+        <div class="p-hero__col p-hero__col--right">
+          <p class="p-hero__tagline">Mobile app design for<br />Vehicle tracking & management.</p>
+          <p class="p-hero__scope">UX Design, UI Design and Design System</p>
         </div>
       </div>
 
       <figure class="p-hero__mockup" data-reveal>
-        <img
-          src="/assets/images/tracky-hero-mockup.webp"
-          alt="Tracky Vehicle Tracking Mobile App and Dashboard Mockup"
-          width="1840"
-          height="886"
-          fetchpriority="high"
-        />
+        <picture>
+          <source media="(max-width: 1024px)" srcset="/assets/images/tracky-hero-mockup-mobile.webp" />
+          <img
+            src="/assets/images/tracky-hero-mockup.webp"
+            alt="Tracky Vehicle Tracking Mobile App and Dashboard Mockup"
+            width="1840"
+            height="886"
+            fetchpriority="high"
+          />
+        </picture>
       </figure>
     </section>
 

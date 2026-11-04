@@ -34,6 +34,62 @@ $$('[data-scroll-to]').forEach((el) => {
   })
 })
 
+/* --------------------------------------------------------------------------
+   Mobile Menu Drawer
+   -------------------------------------------------------------------------- */
+
+function setupMenuDrawer() {
+  const burger = $('.nav__burger')
+  const drawer = $('.menu-drawer')
+  if (!burger || !drawer) return
+
+  const openDrawer = () => {
+    drawer.classList.add('is-open')
+    drawer.setAttribute('aria-hidden', 'false')
+    burger.classList.add('is-open')
+    burger.setAttribute('aria-expanded', 'true')
+    burger.setAttribute('aria-label', 'Close navigation menu')
+    document.body.classList.add('is-drawer-open')
+  }
+
+  const closeDrawer = () => {
+    drawer.classList.remove('is-open')
+    drawer.setAttribute('aria-hidden', 'true')
+    burger.classList.remove('is-open')
+    burger.setAttribute('aria-expanded', 'false')
+    burger.setAttribute('aria-label', 'Open navigation menu')
+    document.body.classList.remove('is-drawer-open')
+  }
+
+  burger.addEventListener('click', (e) => {
+    e.stopPropagation()
+    const isOpen = drawer.classList.contains('is-open')
+    if (isOpen) closeDrawer()
+    else openDrawer()
+  })
+
+  $$('[data-drawer-close]', drawer).forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault()
+      closeDrawer()
+    })
+  })
+
+  $$('.menu-drawer__link, .menu-drawer__cta', drawer).forEach((link) => {
+    link.addEventListener('click', () => {
+      closeDrawer()
+    })
+  })
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+      closeDrawer()
+    }
+  })
+}
+
+setupMenuDrawer()
+
 // Floating controls hide while the footer is on screen
 if (ScrollTrigger) {
   ScrollTrigger.create({

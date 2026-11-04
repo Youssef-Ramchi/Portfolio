@@ -30,6 +30,62 @@ $$('[data-scroll-to]').forEach((el) => {
   })
 })
 
+/* --------------------------------------------------------------------------
+   Mobile Menu Drawer
+   -------------------------------------------------------------------------- */
+
+function setupMenuDrawer() {
+  const burger = $('.nav__burger')
+  const drawer = $('.menu-drawer')
+  if (!burger || !drawer) return
+
+  const openDrawer = () => {
+    drawer.classList.add('is-open')
+    drawer.setAttribute('aria-hidden', 'false')
+    burger.classList.add('is-open')
+    burger.setAttribute('aria-expanded', 'true')
+    burger.setAttribute('aria-label', 'Close navigation menu')
+    document.body.classList.add('is-drawer-open')
+  }
+
+  const closeDrawer = () => {
+    drawer.classList.remove('is-open')
+    drawer.setAttribute('aria-hidden', 'true')
+    burger.classList.remove('is-open')
+    burger.setAttribute('aria-expanded', 'false')
+    burger.setAttribute('aria-label', 'Open navigation menu')
+    document.body.classList.remove('is-drawer-open')
+  }
+
+  burger.addEventListener('click', (e) => {
+    e.stopPropagation()
+    const isOpen = drawer.classList.contains('is-open')
+    if (isOpen) closeDrawer()
+    else openDrawer()
+  })
+
+  $$('[data-drawer-close]', drawer).forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault()
+      closeDrawer()
+    })
+  })
+
+  $$('.menu-drawer__link, .menu-drawer__cta', drawer).forEach((link) => {
+    link.addEventListener('click', () => {
+      closeDrawer()
+    })
+  })
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+      closeDrawer()
+    }
+  })
+}
+
+setupMenuDrawer()
+
 // Floating controls hide while the footer is on screen
 ScrollTrigger.create({
   trigger: '.footer',
@@ -223,18 +279,6 @@ if (!reduceMotion) {
     .to('.hero__title', { yPercent: -35 }, 0)
     .to('.hero__portrait img', { yPercent: 12 }, 0)
 
-  // "scroll down" stays visible until the curve rises up to meet it
-  gsap.to('.hero__scroll', {
-    autoAlpha: 0,
-    ease: 'power2.in',
-    scrollTrigger: {
-      trigger: '.dark',
-      start: 'top 70%',
-      end: 'top 35%',
-      scrub: true,
-    },
-  })
-
   // About statement lights up word by word
   $$('[data-words]').forEach((el) => {
     gsap.fromTo(
@@ -315,7 +359,18 @@ if (cursor && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     moveY(e.clientY)
   })
 
-  $$('a, button').forEach((el) => {
+  $$('.work--link').forEach((el) => {
+    el.addEventListener('mouseenter', () => {
+      cursor.classList.add('is-work-hover')
+      gsap.to(cursor, { scale: 2.4, duration: 0.35, ease: 'power2.out' })
+    })
+    el.addEventListener('mouseleave', () => {
+      cursor.classList.remove('is-work-hover')
+      gsap.to(cursor, { scale: 1, duration: 0.35, ease: 'power2.out' })
+    })
+  })
+
+  $$('a:not(.work--link), button').forEach((el) => {
     el.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 1.8, duration: 0.3 }))
     el.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 1, duration: 0.3 }))
   })
