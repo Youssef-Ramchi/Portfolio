@@ -51,6 +51,7 @@ function setupMenuDrawer() {
     burger.setAttribute('aria-label', 'Close navigation menu')
     document.body.classList.add('is-drawer-open')
     document.documentElement.classList.add('is-drawer-open')
+    if (window.lenis) window.lenis.stop()
   }
 
   const closeDrawer = () => {
@@ -61,6 +62,7 @@ function setupMenuDrawer() {
     burger.setAttribute('aria-label', 'Open navigation menu')
     document.body.classList.remove('is-drawer-open')
     document.documentElement.classList.remove('is-drawer-open')
+    if (window.lenis) window.lenis.start()
   }
 
   burger.addEventListener('click', (e) => {

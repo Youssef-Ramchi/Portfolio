@@ -47,6 +47,7 @@ function setupMenuDrawer() {
     burger.setAttribute('aria-label', 'Close navigation menu')
     document.body.classList.add('is-drawer-open')
     document.documentElement.classList.add('is-drawer-open')
+    if (lenis) lenis.stop()
   }
 
   const closeDrawer = () => {
@@ -57,6 +58,7 @@ function setupMenuDrawer() {
     burger.setAttribute('aria-label', 'Open navigation menu')
     document.body.classList.remove('is-drawer-open')
     document.documentElement.classList.remove('is-drawer-open')
+    if (lenis) lenis.start()
   }
 
   burger.addEventListener('click', (e) => {
@@ -375,6 +377,34 @@ if (cursor && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   $$('a:not(.work--link), button').forEach((el) => {
     el.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 1.8, duration: 0.3 }))
     el.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 1, duration: 0.3 }))
+  })
+}
+
+/* --------------------------------------------------------------------------
+   Hero hover portrait card (follows cursor over hero title)
+   -------------------------------------------------------------------------- */
+
+const heroTitle = $('.hero__title')
+const hoverCard = $('.hero__hover-card')
+
+if (heroTitle && hoverCard && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  const cardX = gsap.quickTo(hoverCard, 'x', { duration: 0.35, ease: 'power3.out' })
+  const cardY = gsap.quickTo(hoverCard, 'y', { duration: 0.35, ease: 'power3.out' })
+
+  gsap.set(hoverCard, { xPercent: -50, yPercent: -50, autoAlpha: 0, scale: 0.9 })
+
+  heroTitle.addEventListener('mouseenter', (e) => {
+    gsap.set(hoverCard, { x: e.clientX, y: e.clientY })
+    gsap.to(hoverCard, { autoAlpha: 1, scale: 1, duration: 0.3, ease: 'power2.out' })
+  })
+
+  heroTitle.addEventListener('mousemove', (e) => {
+    cardX(e.clientX)
+    cardY(e.clientY)
+  })
+
+  heroTitle.addEventListener('mouseleave', () => {
+    gsap.to(hoverCard, { autoAlpha: 0, scale: 0.9, duration: 0.25, ease: 'power2.out' })
   })
 }
 

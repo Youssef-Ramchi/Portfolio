@@ -97,7 +97,7 @@
 .p-hero__mockup {
   position: relative;
   width: 100%;
-  border-radius: calc(40 * var(--u));
+  border-radius: 0;
   overflow: hidden;
   box-shadow: 0 calc(20 * var(--u)) calc(60 * var(--u)) rgba(0, 0, 0, 0.08);
 }
@@ -106,6 +106,7 @@
   width: 100%;
   height: auto;
   display: block;
+  border-radius: 0;
 }
 
 /* --------------------------------------------------------------------------
@@ -149,7 +150,7 @@
 
 .p-card {
   position: relative;
-  border-radius: calc(24 * var(--u));
+  border-radius: 0;
   overflow: hidden;
   box-shadow: 0 calc(16 * var(--u)) calc(48 * var(--u)) rgba(0, 0, 0, 0.06);
 }
@@ -159,6 +160,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  border-radius: 0;
 }
 
 /* --------------------------------------------------------------------------
@@ -229,7 +231,7 @@
 .p-role__list {
   display: flex;
   flex-direction: column;
-  gap: calc(28 * var(--u));
+  gap: calc(4 * var(--u));
 }
 
 .p-role__list li {
@@ -257,10 +259,7 @@
    -------------------------------------------------------------------------- */
 
 .p-prototype {
-  position: relative;
-  max-width: calc(1840 * var(--u));
-  margin: calc(140 * var(--u)) auto 0;
-  padding: 0 calc(40 * var(--u));
+  display: none !important;
 }
 
 .p-prototype__frame {
@@ -467,7 +466,7 @@
     max-width: 424px;
     aspect-ratio: 424 / 372;
     margin: 0 auto;
-    border-radius: 18px;
+    border-radius: 0;
     overflow: hidden;
   }
 
@@ -478,6 +477,7 @@
     object-fit: cover;
     object-position: center;
     display: block;
+    border-radius: 0;
   }
 
   .p-overview {
@@ -511,7 +511,7 @@
     max-width: 400px;
     aspect-ratio: 400 / 215;
     margin: 0 auto;
-    border-radius: 18px;
+    border-radius: 0;
     overflow: hidden;
   }
 
@@ -521,6 +521,7 @@
     object-fit: cover;
     object-position: center;
     display: block;
+    border-radius: 0;
   }
 
   .p-role {
@@ -568,7 +569,7 @@
   .p-role__list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 8px;
   }
 
   .p-role__list li {
