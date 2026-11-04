@@ -391,21 +391,48 @@ if (heroTitle && hoverCard && window.matchMedia('(hover: hover) and (pointer: fi
   const cardX = gsap.quickTo(hoverCard, 'x', { duration: 0.35, ease: 'power3.out' })
   const cardY = gsap.quickTo(hoverCard, 'y', { duration: 0.35, ease: 'power3.out' })
 
+  let isHovering = false
+
   gsap.set(hoverCard, { xPercent: 0, yPercent: -75, transformOrigin: '0% 75%', autoAlpha: 0, scale: 0.9 })
 
-  heroTitle.addEventListener('mouseenter', (e) => {
-    gsap.set(hoverCard, { x: e.clientX, y: e.clientY })
-    gsap.to(hoverCard, { autoAlpha: 1, scale: 1, duration: 0.3, ease: 'power2.out' })
-  })
-
-  heroTitle.addEventListener('mousemove', (e) => {
+  const showCard = (e) => {
+    if (!isHovering) {
+      isHovering = true
+      gsap.set(hoverCard, { x: e.clientX, y: e.clientY })
+      gsap.to(hoverCard, { autoAlpha: 1, scale: 1, duration: 0.25, ease: 'power2.out', overwrite: 'auto' })
+    }
     cardX(e.clientX)
     cardY(e.clientY)
+  }
+
+  const hideCard = () => {
+    if (isHovering) {
+      isHovering = false
+      gsap.to(hoverCard, { autoAlpha: 0, scale: 0.9, duration: 0.2, ease: 'power2.out', overwrite: 'auto' })
+    }
+  }
+
+  // 1. Element hover events
+  heroTitle.addEventListener('mouseenter', showCard)
+  heroTitle.addEventListener('mousemove', showCard)
+  heroTitle.addEventListener('mouseleave', hideCard)
+
+  // 2. Global mousemove safeguard: if cursor is anywhere outside heroTitle, hide immediately
+  window.addEventListener('mousemove', (e) => {
+    if (isHovering && !heroTitle.contains(e.target)) {
+      hideCard()
+    }
   })
 
-  heroTitle.addEventListener('mouseleave', () => {
-    gsap.to(hoverCard, { autoAlpha: 0, scale: 0.9, duration: 0.25, ease: 'power2.out' })
-  })
+  // 3. Scroll safeguard: any page scroll immediately dismisses the floating hover card
+  window.addEventListener('scroll', hideCard, { passive: true })
+  if (lenis) {
+    lenis.on('scroll', hideCard)
+  }
+
+  // 4. Viewport leave & window blur safeguard (multi-monitor, alt-tab, browser chrome)
+  document.addEventListener('mouseleave', hideCard)
+  window.addEventListener('blur', hideCard)
 }
 
 /* --------------------------------------------------------------------------
