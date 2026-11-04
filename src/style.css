@@ -227,7 +227,7 @@ button {
 .fab {
   position: fixed;
   right: calc(48 * var(--u));
-  bottom: calc(83 * var(--u));
+  bottom: calc(56 * var(--u));
   z-index: 60;
   display: flex;
   align-items: center;
@@ -1033,12 +1033,52 @@ body.is-drawer-open .nav {
 }
 
 .work__media {
+  position: relative;
   aspect-ratio: 844 / 653.5;
   overflow: hidden;
   background: #d9d9d9;
   border-radius: 0;
   transition: box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.work__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.42);
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.work--link:hover .work__media::after {
+  opacity: 1;
+}
+
+.work__media-title {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: calc(64 * var(--u));
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--lime);
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.work--link:hover .work__media-title {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .work--link:hover .work__media {
@@ -1425,7 +1465,7 @@ body.is-drawer-open .nav {
 
   .fab {
     right: 20px;
-    bottom: 20px;
+    bottom: 24px;
     width: 52px;
     height: 52px;
     background: #c4c4c4;
@@ -1621,6 +1661,10 @@ body.is-drawer-open .nav {
   .work__media {
     border-radius: 0;
     overflow: hidden;
+  }
+
+  .work__media-title {
+    font-size: 36px;
   }
 
   .work__media img {
