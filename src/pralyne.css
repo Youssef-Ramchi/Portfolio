@@ -339,6 +339,23 @@
 }
 
 /* --------------------------------------------------------------------------
+   Live Website CTA (Before Next/Prev)
+   -------------------------------------------------------------------------- */
+
+.p-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: calc(100 * var(--u)) auto calc(60 * var(--u));
+  max-width: calc(1840 * var(--u));
+  padding: 0 calc(40 * var(--u));
+}
+
+.p-cta .btn--lime {
+  display: inline-flex;
+}
+
+/* --------------------------------------------------------------------------
    Bottom Navigation
    -------------------------------------------------------------------------- */
 
@@ -662,6 +679,11 @@
   .p-prototype__btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 14px 28px rgba(212, 245, 52, 0.35);
+  }
+
+  .p-cta {
+    margin: 48px auto 28px;
+    padding: 0 20px;
   }
 
   .p-nav {

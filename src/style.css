@@ -1014,24 +1014,6 @@ body.is-drawer-open .nav {
   font-weight: 500;
 }
 
-.work__tag {
-  font-size: max(12px, calc(16 * var(--u)));
-  font-weight: 500;
-  color: #000;
-  opacity: 0;
-  transform: translateX(-8px);
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.work--link:hover .work__tag {
-  opacity: 1;
-  transform: translateX(0);
-}
-
 .work__media {
   position: relative;
   aspect-ratio: 844 / 653.5;
@@ -1651,11 +1633,6 @@ body.is-drawer-open .nav {
 
   .work figcaption span:first-child {
     opacity: 0.4;
-  }
-
-  .work figcaption .work__tag {
-    font-size: 12px;
-    font-weight: 500;
   }
 
   .work__media {
