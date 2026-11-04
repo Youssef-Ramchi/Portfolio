@@ -35,6 +35,7 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: calc(40 * var(--u));
+  padding-top: 56px;
   margin-bottom: calc(48 * var(--u));
 }
 

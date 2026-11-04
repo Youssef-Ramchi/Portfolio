@@ -1749,12 +1749,18 @@ body.is-drawer-open .nav {
 
   .footer__name p {
     font-size: clamp(48px, 15.5vw, 72.4px);
-    color: var(--lime) !important;
+    color: rgba(255, 255, 255, 0.08);
   }
 
-  .footer__name .is-white,
-  .footer__name .is-lime,
   .footer__name .char {
+    color: inherit;
+  }
+
+  .footer__name .is-white {
+    color: #ffffff !important;
+  }
+
+  .footer__name .is-lime {
     color: var(--lime) !important;
   }
 }
