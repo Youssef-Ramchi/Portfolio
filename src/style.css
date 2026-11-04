@@ -557,6 +557,7 @@ body.is-drawer-open .nav {
   z-index: 100;
   will-change: transform;
   border-radius: 0;
+  transform-origin: 0% 75%;
 }
 
 .hero__hover-card-inner {

@@ -391,7 +391,7 @@ if (heroTitle && hoverCard && window.matchMedia('(hover: hover) and (pointer: fi
   const cardX = gsap.quickTo(hoverCard, 'x', { duration: 0.35, ease: 'power3.out' })
   const cardY = gsap.quickTo(hoverCard, 'y', { duration: 0.35, ease: 'power3.out' })
 
-  gsap.set(hoverCard, { xPercent: -50, yPercent: -50, autoAlpha: 0, scale: 0.9 })
+  gsap.set(hoverCard, { xPercent: 0, yPercent: -75, transformOrigin: '0% 75%', autoAlpha: 0, scale: 0.9 })
 
   heroTitle.addEventListener('mouseenter', (e) => {
     gsap.set(hoverCard, { x: e.clientX, y: e.clientY })
