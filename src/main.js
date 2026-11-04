@@ -46,6 +46,7 @@ function setupMenuDrawer() {
     burger.setAttribute('aria-expanded', 'true')
     burger.setAttribute('aria-label', 'Close navigation menu')
     document.body.classList.add('is-drawer-open')
+    document.documentElement.classList.add('is-drawer-open')
   }
 
   const closeDrawer = () => {
@@ -55,6 +56,7 @@ function setupMenuDrawer() {
     burger.setAttribute('aria-expanded', 'false')
     burger.setAttribute('aria-label', 'Open navigation menu')
     document.body.classList.remove('is-drawer-open')
+    document.documentElement.classList.remove('is-drawer-open')
   }
 
   burger.addEventListener('click', (e) => {
